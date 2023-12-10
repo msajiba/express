@@ -13,22 +13,24 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  const data = [
+    {name:"sajib", age:"25"},
+    {name:"b", age:"20"},
+  ]
+  res.send(data);
 });
 
 app.post("/order", (req, res) => {
-  console.log("data", req);
-  res.send("Data");
+  console.log('res', req.body);
+  res.send(req.body);
 });
-
 
 //handling server error
 app.use((err, req, res, next) => {
   res.status(500).json({
-      message: 'Something broke'
+    message: "Something broke",
   });
 });
-
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
